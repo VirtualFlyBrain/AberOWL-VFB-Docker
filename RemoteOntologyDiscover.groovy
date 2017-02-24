@@ -7,6 +7,7 @@
 import groovyx.net.http.HTTPBuilder
 import java.text.SimpleDateFormat
 import db.*
+import java.util.Date
 
 String BIO_API_ROOT = 'http://data.bioontology.org/'
 String BIO_API_KEY = '24e0413e-54e0-11e0-9d7b-005056aa3316'
