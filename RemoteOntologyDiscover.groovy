@@ -28,9 +28,9 @@ try {
       'download': 'http://www.virtualflybrain.org/owl/vfb.owl'
     ])
 
-  exOnt.description = submissions[0].description
+  exOnt.description = 'Virtual Fly Brain Image Ontology'
 
-  exOnt.homepage = submissions[0].homepage
+  exOnt.homepage = 'http://www.virtualflybrain.org'
   exOnt.contact = []
   exOnt.contact << 'support@virtualflybrain.org'
   newO.add(exOnt.id)
