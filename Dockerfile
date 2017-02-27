@@ -52,6 +52,10 @@ npm install databank-redis
 
 RUN  yum clean all
 
+# Create SDK dir
+RUN mkdir /opt/sdkman && \
+chmod -R 777 /opt/sdkman
+
 EXPOSE 3000
 EXPOSE 31337
 
