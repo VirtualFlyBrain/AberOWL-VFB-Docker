@@ -52,10 +52,6 @@ npm install databank-redis
 
 RUN  yum clean all
 
-# Create SDK dir
-RUN mkdir /opt/sdkman && \
-chmod -R 777 /opt/sdkman
-
 EXPOSE 3000
 EXPOSE 31337
 
@@ -71,6 +67,9 @@ cat /opt/runservers.sh
 
 # Add only the VFB ontology
 COPY dump.rdb /var/lib/redis/6379/dump.rdb
+
+# Create SDK dir accessible
+RUN chmod -R 777 /opt
 
 # start AberOWL servers:
 ENTRYPOINT ["/opt/runservers.sh"]
