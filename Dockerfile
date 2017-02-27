@@ -8,11 +8,6 @@ yum install -y wget git tcl gcc gcc-c++ kernel-devel make freetype fontconfig un
 RUN yum install -y java-1.8.0-openjdk-headless
 RUN export JAVA_HOME=/etc/alternatives/jre_openjdk
 
-# Install groovy
-RUN curl -s get.sdkman.io | bash && \
-source "$HOME/.sdkman/bin/sdkman-init.sh" && \
-/bin/bash -l -c 'sdk install groovy'
-
 # Install phantomjs
 RUN cd /opt && \
 curl -O https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantomjs/phantomjs-1.9.2-linux-x86_64.tar.bz2 && \
@@ -57,15 +52,21 @@ npm install databank-redis
 
 RUN  yum clean all
 
+EXPOSE 3000
+EXPOSE 31337
+
+# Copy base Ontology
+COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_1.ont
+COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_2.ont
+COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont
+
 # Create server start script
 COPY runservers.sh /opt/runservers.sh
 RUN chmod +x /opt/runservers.sh && \
 cat /opt/runservers.sh
 
-# Sync only the VFB ontology
-COPY RemoteOntologyDiscover.groovy /opt/aberowl-meta/aberowl-sync/RemoteOntologyDiscover.groovy
+# Add only the VFB ontology
+COPY dump.rdb /var/lib/redis/6379/dump.rdb
 
-EXPOSE 3000
-EXPOSE 31337
 # start AberOWL servers:
 ENTRYPOINT ["/opt/runservers.sh"]
