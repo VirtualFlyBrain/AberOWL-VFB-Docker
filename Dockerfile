@@ -71,7 +71,7 @@ COPY dump.rdb /var/lib/redis/6379/dump.rdb
 # Create SDK dir accessible
 RUN chmod -R 777 /opt
 
-RUN useradd --shell /usr/sbin/nologin --uid 1000000000 --gid 0 flybrain
+RUN useradd -l --shell /usr/sbin/nologin --uid 1000000000 --gid 0 flybrain
 
 WORKDIR /opt
 ENV HOME=/opt
