@@ -56,9 +56,9 @@ EXPOSE 3000
 EXPOSE 31337
 
 # Copy base Ontology
-COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_1.ont
-COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_2.ont
 COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont
+RUN ln -s /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont /opt/aberowl-meta/aberowl-server/onts/VFB_1.ont && \
+ln -s /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont /opt/aberowl-meta/aberowl-server/onts/VFB_2.ont
 
 RUN mkdir -p /opt/aberowl-meta/ontologies/VFB/new && \
 ln -s /opt /home/hohndor
