@@ -60,6 +60,10 @@ COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_1.ont
 COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_2.ont
 COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont
 
+RUN mkdir -p /opt/aberowl-meta/ontologies/VFB/new && \
+ln -s /opt /home/hohndor
+COPY config.json /opt/aberowl-meta/ontologies/VFB/config.json
+
 # Create server start script
 COPY runservers.sh /opt/runservers.sh
 RUN chmod +x /opt/runservers.sh && \
