@@ -61,7 +61,8 @@ RUN ln -s /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont /opt/aberowl-meta/aber
 ln -s /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont /opt/aberowl-meta/aberowl-server/onts/VFB_2.ont
 
 RUN mkdir -p /opt/aberowl-meta/ontologies/VFB/new && \
-ln -s /opt /home/hohndor
+ln -s /opt /home/hohndor && \
+mkdir -p /opt/aberowl-meta/ontologies/VFB/release
 COPY config.json /opt/aberowl-meta/ontologies/VFB/config.json
 
 # Create server start script
