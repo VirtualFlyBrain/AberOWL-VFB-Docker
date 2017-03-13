@@ -11,7 +11,6 @@ echo '[:] installing aberowl'
 
 echo '[:] Downloading submodules'
 git clone https://github.com/VirtualFlyBrain/AberOWL.git aberowl-server
-git clone https://github.com/bio-ontology-research-group/aberowl-orepo.git aberowl-web
 git clone https://github.com/bio-ontology-research-group/aberowl-sync aberowl-sync
 
 cd aberowl-server
@@ -21,13 +20,6 @@ git submodule update
 cd ../aberowl-sync
 git submodule init
 git submodule update
-
-cd ../
-
-echo '[:] Installing web dependencies'
-
-cd aberowl-web
-npm install
 
 cd ../
 
