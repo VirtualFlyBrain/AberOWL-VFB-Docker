@@ -9,5 +9,6 @@ cd /opt/aberowl-meta/jenkins/workspace
 groovy CheckUpdate.groovy VFB
 groovy Classify.groovy VFB
 groovy Index.groovy VFB
+sleep 1m && groovy Restart.groovy VFB &
 cd /opt/aberowl-meta/aberowl-server
 groovy AberOWLServer.groovy 31337
