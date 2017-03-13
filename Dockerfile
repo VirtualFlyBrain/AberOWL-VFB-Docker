@@ -75,6 +75,9 @@ RUN curl -s get.sdkman.io | bash - && \
 source "$HOME/.sdkman/bin/sdkman-init.sh" && \
 sdk install groovy
 
+# correct db prefix 
+RUN sed -i "s|DB_PREFIX = 'ontos:'|DB_PREFIX = 'ontologies:'|" /opt/aberowl-meta/jenkins/workspace/*.groovy
+
 # start AberOWL servers:
 ENTRYPOINT ["/opt/runservers.sh"]
 
