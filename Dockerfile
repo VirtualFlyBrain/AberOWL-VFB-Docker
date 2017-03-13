@@ -71,9 +71,6 @@ cat /opt/runservers.sh
 # Create SDK dir accessible
 RUN chmod -R 777 /opt
 
-# Add only the VFB ontology
-COPY dump.rdb /var/lib/redis/6379/dump.rdb
-
 RUN curl -s get.sdkman.io | bash - && \
 source "$HOME/.sdkman/bin/sdkman-init.sh" && \
 sdk install groovy
