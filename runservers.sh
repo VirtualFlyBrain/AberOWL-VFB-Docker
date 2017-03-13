@@ -9,6 +9,7 @@ cd /opt/aberowl-meta/jenkins/workspace
 groovy CheckUpdate.groovy VFB
 groovy Classify.groovy VFB
 groovy Index.groovy VFB
+groovy Restart.groovy VFB
 sleep 1m && groovy Restart.groovy VFB &
 redis-cli GET "ontologies:VFB"
 cd /opt/aberowl-meta/aberowl-server
