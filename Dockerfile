@@ -78,6 +78,12 @@ sdk install groovy
 # correct db prefix 
 RUN sed -i "s|DB_PREFIX = 'ontos:'|DB_PREFIX = 'ontologies:'|" /opt/aberowl-meta/jenkins/workspace/*.groovy
 
+# Link initial ontology 
+RUN ln -s /opt/aberowl-meta/ontologies/VFB/release/VFB_1.ont /opt/aberowl-meta/aberowl-server/onts/
+
+# correct server port:
+RUN sed -i "s|String ABEROWL_API = 'http://localhost:30000/api/'|String ABEROWL_API = 'http://localhost:31337/api/'|" /opt/aberowl-meta/jenkins/workspace/Restart.groovy
+
 # start AberOWL servers:
 ENTRYPOINT ["/opt/runservers.sh"]
 
