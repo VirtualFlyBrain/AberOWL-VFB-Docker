@@ -56,7 +56,6 @@ npm install databank-redis
 
 RUN  yum clean all
 
-EXPOSE 3000
 EXPOSE 31337
 
 RUN mkdir -p /opt/aberowl-meta/ontologies/VFB/new && \
