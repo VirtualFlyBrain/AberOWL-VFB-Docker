@@ -55,11 +55,6 @@ RUN  yum clean all
 EXPOSE 3000
 EXPOSE 31337
 
-# Copy base Ontology
-COPY VFB.ont /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont
-RUN ln -s /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont /opt/aberowl-meta/aberowl-server/onts/VFB_1.ont && \
-ln -s /opt/aberowl-meta/aberowl-server/onts/VFB_3.ont /opt/aberowl-meta/aberowl-server/onts/VFB_2.ont
-
 RUN mkdir -p /opt/aberowl-meta/ontologies/VFB/new && \
 ln -s /opt /home/hohndor && \
 mkdir -p /opt/aberowl-meta/ontologies/VFB/release
@@ -69,9 +64,6 @@ COPY config.json /opt/aberowl-meta/ontologies/VFB/config.json
 COPY runservers.sh /opt/runservers.sh
 RUN chmod +x /opt/runservers.sh && \
 cat /opt/runservers.sh
-
-# Add only the VFB ontology
-COPY dump.rdb /var/lib/redis/6379/dump.rdb
 
 # Create SDK dir accessible
 RUN chmod -R 777 /opt
