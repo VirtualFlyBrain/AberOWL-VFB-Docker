@@ -6,7 +6,11 @@ yum install -y wget git tcl gcc gcc-c++ kernel-devel make freetype fontconfig un
 
 # Install Java8
 RUN yum install -y java-1.8.0-openjdk-headless
-RUN export JAVA_HOME=/etc/alternatives/jre_openjdk
+
+WORKDIR /opt
+ENV HOME=/opt
+ENV JAVA_HOME=/etc/alternatives/jre_openjdk
+ENV SDKMAN_DIR=/opt/.sdkman
 
 # Install phantomjs
 RUN cd /opt && \
@@ -68,8 +72,13 @@ cat /opt/runservers.sh
 # Create SDK dir accessible
 RUN chmod -R 777 /opt
 
-WORKDIR /opt
-ENV HOME=/opt
+# Add only the VFB ontology
+COPY dump.rdb /var/lib/redis/6379/dump.rdb
+
+RUN curl -s get.sdkman.io | bash - && \
+source "$HOME/.sdkman/bin/sdkman-init.sh" && \
+sdk install groovy
+
 # start AberOWL servers:
 ENTRYPOINT ["/opt/runservers.sh"]
 
