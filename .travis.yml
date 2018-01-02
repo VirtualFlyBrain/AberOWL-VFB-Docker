@@ -1,0 +1,7 @@
+services:
+  - docker
+  
+script:
+  - echo -e "travis_fold:start:dockerbuild"
+  - docker build -t test-image:test .
+  - echo -e "travis_fold:end:dockerbuild"
