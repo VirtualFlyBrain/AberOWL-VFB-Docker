@@ -27,7 +27,10 @@ RUN cd /opt && \
 wget http://download.redis.io/redis-stable.tar.gz && \
 tar xvzf redis-stable.tar.gz && \
 cd redis-stable && \
-make distclean && \
+cd deps && \
+ls -d * | xargs make && \
+cd .. && \
+make && \
 make install
 
 #Start redis
