@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 # Install requirements:
 RUN apt-get -yq update && \
-apt-get -yq install nodejs nodejs-legacy npm apache2 build-essential chrpath libssl-dev libxft-dev openjdk-8-jdk \
+apt-get -yq install coreutils nodejs nodejs-legacy npm apache2 build-essential chrpath libssl-dev libxft-dev openjdk-8-jdk \
 libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl
 
 WORKDIR /opt
@@ -11,9 +11,9 @@ ENV SDKMAN_DIR=/opt/.sdkman
 
 # Install phantomjs
 RUN cd /opt && \
-curl -O https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantomjs/phantomjs-1.9.2-linux-x86_64.tar.bz2 && \
-tar xvf phantomjs-1.9.2-linux-x86_64.tar.bz2 && \
-cp phantomjs-1.9.2-linux-x86_64.tar.bz2 /usr/local/bin
+curl -O https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/ && \
+ln -s /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/
 
 # Install redis
 RUN cd /opt && \
