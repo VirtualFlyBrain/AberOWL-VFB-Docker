@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 # Install requirements:
 RUN apt-get -qq -y update && \
 apt-get -qq -y install coreutils nodejs nodejs-legacy npm apache2 build-essential chrpath libssl-dev libxft-dev openjdk-8-jdk \
-libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl wget git zip unzip
+libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl wget git zip unzip bash
 
 WORKDIR /opt
 ENV HOME=/opt
@@ -69,7 +69,7 @@ RUN chmod -R 777 /opt
 
 RUN curl -s get.sdkman.io | bash - && \
 chmod -R 777 /opt \
-bash -c "sdk install groovy" 
+/bin/bash -c "sdk install groovy" 
 
 # correct db prefix 
 RUN sed -i "s|DB_PREFIX = 'ontos:'|DB_PREFIX = 'ontologies:'|" /opt/aberowl-meta/jenkins/workspace/*.groovy
@@ -83,4 +83,4 @@ RUN sed -i "s|String ABEROWL_API = 'http://localhost:30000/api/'|String ABEROWL_
 # start AberOWL servers:
 ENTRYPOINT ["/opt/runservers.sh"]
 
-CMD ["bash"]
+CMD ["/bin/bash"]
