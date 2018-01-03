@@ -7,6 +7,7 @@ apt-get -yq install oracle-java8-installer oracle-java8-set-default nodejs nodej
 
 WORKDIR /opt
 ENV HOME=/opt
+ENV JAVA_HOME=/etc/alternatives/jre_openjdk
 ENV SDKMAN_DIR=/opt/.sdkman
 
 # Install phantomjs
