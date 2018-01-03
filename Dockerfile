@@ -68,6 +68,7 @@ cat /opt/runservers.sh
 RUN chmod -R 777 /opt
 
 RUN curl -s get.sdkman.io | bash - && \
+chmod -R 777 /opt \
 "$HOME/.sdkman/bin/sdkman-init.sh" && \
 sdk install groovy
 
