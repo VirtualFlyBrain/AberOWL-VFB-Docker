@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 # Install requirements:
 RUN apt-get -qq -y update && \
 apt-get -qq -y install coreutils nodejs nodejs-legacy npm apache2 build-essential chrpath libssl-dev libxft-dev openjdk-8-jdk \
-libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl wget
+libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl wget git
 
 WORKDIR /opt
 ENV HOME=/opt
