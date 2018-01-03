@@ -50,7 +50,7 @@ npm install cache-manager
 RUN cd /opt/aberowl-meta/aberowl-web/node_modules/databank/ && \
 npm install databank-redis
 
-RUN  yum clean all
+RUN apt-get -qq -y clean
 
 EXPOSE 31337
 
