@@ -2,7 +2,8 @@ FROM ubuntu:16.04
 
 # Install requirements:
 RUN apt-get -yq update && \
-apt-get -yq install nodejs nodejs-legacy npm apache2 build-essential chrpath libssl-dev libxft-dev openjdk-8-jdk libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
+apt-get -yq install nodejs nodejs-legacy npm apache2 build-essential chrpath libssl-dev libxft-dev openjdk-8-jdk \
+libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl
 
 WORKDIR /opt
 ENV HOME=/opt
