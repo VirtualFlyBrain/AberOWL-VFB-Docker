@@ -69,8 +69,7 @@ RUN chmod -R 777 /opt
 
 RUN curl -s get.sdkman.io | bash - && \
 chmod -R 777 /opt \
-"$HOME/.sdkman/bin/sdkman-init.sh" && \
-sdk install groovy
+bash -c 'sdk install groovy" 
 
 # correct db prefix 
 RUN sed -i "s|DB_PREFIX = 'ontos:'|DB_PREFIX = 'ontologies:'|" /opt/aberowl-meta/jenkins/workspace/*.groovy
