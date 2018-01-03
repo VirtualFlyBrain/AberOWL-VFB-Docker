@@ -1,11 +1,8 @@
-FROM    centos:centos6
+FROM ubuntu:14.04
 
 # Install requirements:
-RUN yum update -y && \
-yum install -y wget git tcl gcc gcc-c++ kernel-devel make freetype fontconfig unzip zip
-
-# Install Java8
-RUN yum install -y java-1.8.0-openjdk-headless
+RUN apt-get -yq update && \
+apt-get -yq install nodejs nodejs-legacy npm apache2 build-essential chrpath libssl-dev libxft-dev java-1.8.0-openjdk-headless libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
 
 WORKDIR /opt
 ENV HOME=/opt
@@ -17,10 +14,6 @@ RUN cd /opt && \
 curl -O https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantomjs/phantomjs-1.9.2-linux-x86_64.tar.bz2 && \
 tar xvf phantomjs-1.9.2-linux-x86_64.tar.bz2 && \
 cp phantomjs-1.9.2-linux-x86_64.tar.bz2 /usr/local/bin
-
-# Install Node.js and npm
-RUN curl --silent --location https://rpm.nodesource.com/setup | bash -
-RUN yum install -y nodejs
 
 # Install redis
 RUN cd /opt && \
