@@ -9,6 +9,9 @@ WORKDIR /opt
 ENV HOME=/opt
 ENV SDKMAN_DIR=/opt/.sdkman
 
+#update npm
+RUN npm install -g npm@5.1.0
+
 # Install phantomjs
 RUN cd /opt && \
 wget http://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
