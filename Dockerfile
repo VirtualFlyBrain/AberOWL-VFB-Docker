@@ -6,7 +6,6 @@ apt-get -qq -y install coreutils nodejs nodejs-legacy npm apache2 build-essentia
 libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl wget git zip unzip bash
 
 WORKDIR /opt
-ENV HOME=/opt
 ENV SDKMAN_DIR=/opt/.sdkman
 
 #update npm
