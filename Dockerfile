@@ -1,26 +1,21 @@
-FROM    centos:centos6
+FROM ubuntu:16.04
 
 # Install requirements:
-RUN yum update -y && \
-yum install -y wget git tcl gcc gcc-c++ kernel-devel make freetype fontconfig unzip zip
-
-# Install Java8
-RUN yum install -y java-1.8.0-openjdk-headless
+RUN apt-get -qq -y update && \
+apt-get -qq -y install coreutils nodejs nodejs-legacy npm apache2 build-essential chrpath libssl-dev libxft-dev openjdk-8-jdk \
+libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl wget git zip unzip bash
 
 WORKDIR /opt
-ENV HOME=/opt
-ENV JAVA_HOME=/etc/alternatives/jre_openjdk
 ENV SDKMAN_DIR=/opt/.sdkman
+
+#update npm
+RUN npm install -g npm@5.1.0
 
 # Install phantomjs
 RUN cd /opt && \
-curl -O https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantomjs/phantomjs-1.9.2-linux-x86_64.tar.bz2 && \
-tar xvf phantomjs-1.9.2-linux-x86_64.tar.bz2 && \
-cp phantomjs-1.9.2-linux-x86_64.tar.bz2 /usr/local/bin
-
-# Install Node.js and npm
-RUN curl --silent --location https://rpm.nodesource.com/setup | bash -
-RUN yum install -y nodejs
+wget http://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 && \
+tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/ && \
+ln -s /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/
 
 # Install redis
 RUN cd /opt && \
@@ -54,7 +49,7 @@ npm install cache-manager
 RUN cd /opt/aberowl-meta/aberowl-web/node_modules/databank/ && \
 npm install databank-redis
 
-RUN  yum clean all
+RUN apt-get -qq -y clean
 
 EXPOSE 31337
 
@@ -72,8 +67,8 @@ cat /opt/runservers.sh
 RUN chmod -R 777 /opt
 
 RUN curl -s get.sdkman.io | bash - && \
-source "$HOME/.sdkman/bin/sdkman-init.sh" && \
-sdk install groovy
+chmod -R 777 /opt && \
+/bin/bash -c "source /opt/.sdkman/bin/sdkman-init.sh; sdk install groovy" 
 
 # correct db prefix 
 RUN sed -i "s|DB_PREFIX = 'ontos:'|DB_PREFIX = 'ontologies:'|" /opt/aberowl-meta/jenkins/workspace/*.groovy
@@ -87,4 +82,4 @@ RUN sed -i "s|String ABEROWL_API = 'http://localhost:30000/api/'|String ABEROWL_
 # start AberOWL servers:
 ENTRYPOINT ["/opt/runservers.sh"]
 
-CMD ["bash"]
+CMD ["/bin/bash"]
