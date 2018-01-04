@@ -7,6 +7,7 @@ libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev curl wget git zi
 
 WORKDIR /opt
 ENV SDKMAN_DIR=/opt/.sdkman
+ENV VFBOWL_VER=Current
 
 #update npm
 RUN npm install -g npm@5.1.0
