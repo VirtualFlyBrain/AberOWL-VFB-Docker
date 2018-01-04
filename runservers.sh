@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sed -e "s/VFBOWL_VER/${VFBOWL_VER}/g" /opt/aberowl-meta/ontologies/VFB/config.json
+
 source "$SDKMAN_DIR/bin/sdkman-init.sh"
 cd /opt/redis-stable/utils
 echo -n | ./install_server.sh &
